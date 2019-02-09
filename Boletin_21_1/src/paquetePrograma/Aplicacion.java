@@ -7,57 +7,60 @@
 package paquetePrograma;
 
 import paqueteDatos.Metodos;
-import paqueteDatos.Libros;
+import paqueteDatos.Libro;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Aplicacion {
-    
-    public static void menuAplicacion(){
-        System.out.println("");
-            for(int i = 0; i < 25; i ++){
-                System.out.print("*");
-            }
-            System.out.println("\n*\t-> Añadir\t*\n*\t-> Vender\t*\n*\t-> Mostrar\t*\n*\t-> Baja\t\t*\n*\t-> Consultar\t*\n*\t-> Salir\t*");
-            for(int i = 0; i < 25; i ++){
-                System.out.print("*");
-            }
-        System.out.println("");
-    }
-    
-    public static void main(String[] args) {
-        ArrayList<Libros> listaLibros = new ArrayList<>();
-        Metodos metodos = new Metodos();
-        Scanner leer = new Scanner(System.in);
-        String opcion = "";
-        System.out.println("Bienvenido a la librería, elige una opción:");
-        do{
-            menuAplicacion();
-            System.out.print("\n[>]\t:");
-            opcion = leer.next();
-            switch(opcion.toLowerCase()){
-                case "añadir":
-                    System.out.println("Añadido");
-                    break;
-                case "vender":
-                    System.out.println("Vendido");
-                    break;
-                case "mostrar":
-                    System.out.println("Mostrado");
-                    break;
-                case "baja":
-                    System.out.println("Dado de baja");
-                    break;
-                case "consultar":
-                    System.out.println("Consultado");
-                    break;
-                case "salir":
-                    System.out.println("[*]\tHasta luego! :)");
-                    System.exit(0);
-                default:
-                    System.out.println("[!]\tNo existe esa opción.");
-            }
-        }while(!opcion.equalsIgnoreCase("salir"));
-    }
 
+    public static void main(String[] args) {
+        Scanner leer = new Scanner(System.in);
+        String key = null;
+        ArrayList<Libro> listaLibros = new ArrayList<>();
+        listaLibros.add(new Libro("HarryPotter","JKRowling","39492151",32,2));
+        listaLibros.add(new Libro("El Resplandor","Stephen King","39492152",77,0));
+        listaLibros.add(new Libro("Death Note","Chino","39492153",884,8));
+        listaLibros.add(new Libro("Konosuba","Japones","39492154",1362,1));
+        listaLibros.add(new Libro("Sapote","Puto","39492155",9,5));
+        Metodos metodos = new Metodos();
+        do{
+            try{
+                System.out.print("\n[ MENU PRINCIPAL ]\n\t1: Añadir\n\t2: Vender\n\t3: Mostrar\n\t4: Baja\n\t5: Consultar\n\t6: Salir\n\t$: ");
+                key = leer.next();
+                switch(key.toLowerCase()){
+                    case "añadir":
+                        System.out.println("\n[ Añadir libros ]");
+                        metodos.añadir(listaLibros);
+                        break;
+                    case "vender":
+                        System.out.println("\n[ Vender libros ]");
+                        metodos.vender(listaLibros);
+                        break;
+                    case "mostrar"://FALTA ORDENAR
+                        System.out.println("\n[ Mostrar libros ]");
+                        metodos.mostrar(listaLibros);
+                        break;
+                    case "baja":
+                        System.out.println("\n[ Dar de baja ]");
+                        metodos.baja(listaLibros);
+                        break;
+                    case "consultar":
+                        System.out.println("\n[ Consultar libros ]");
+                        //metodos.consultar();
+                        System.out.println();
+                        break;
+                    case "salir":
+                        System.exit(0);
+                    default:
+                        System.out.println("\n\t[ error ] Porfavor, seleccione una opción válida.");
+                }
+            }catch(NullPointerException e1){
+                System.out.println("\n\t[ error ] No puede ser nulo.");
+            }catch(NumberFormatException e2){
+                System.out.println("\n\t[ error ] El formato introducido no es correcto.");
+            }catch(Exception e){
+                System.out.println("\n\t[ error ] ");
+            }
+        }while(!key.equalsIgnoreCase("salir"));
+    }
 }
