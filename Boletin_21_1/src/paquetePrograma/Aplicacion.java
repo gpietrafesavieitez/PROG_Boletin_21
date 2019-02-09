@@ -59,7 +59,7 @@ public class Aplicacion {
             }catch(NumberFormatException e2){
                 System.out.println("\n\t[ error ] El formato introducido no es correcto.");
             }catch(Exception e){
-                System.out.println("\n\t[ error ] ");
+                System.out.println("\n\t[ error ] error");
             }
         }while(!key.equalsIgnoreCase("salir"));
     }
