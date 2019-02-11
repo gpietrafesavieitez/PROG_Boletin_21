@@ -53,7 +53,7 @@ public class Metodos {
                 }
             }
         }
-        if(c == 0){ // Avisamos que no existe el libro
+        if(c == 0){ // Avisamos de que no existe el libro
             System.out.println("\n\t[ aviso ] No existen libros para vender.");
         }
     }
