@@ -6,7 +6,7 @@
 
 package paqueteDatos;
 
-public class Libro {
+public class Libro implements Comparable {
     String titulo,autor,ISBN;
     double precio;
     int numeroDeUnidades;
@@ -64,6 +64,18 @@ public class Libro {
 
     @Override
     public String toString() {
-        return "\n\tTítulo: " + titulo + "\n\tAutor: " + autor + "\n\tISBN: " + ISBN + "\n\tPrecio: " + precio + "\n\tUnidades: " + numeroDeUnidades + "\n";
+        return "\n\tTítulo: '" + titulo + "' \n\tAutor: '" + autor + "' \n\tISBN: '" + ISBN + "' \n\tPrecio: " + precio + "\n\tUnidades: " + numeroDeUnidades + "\n";
     }
+    
+    @Override
+    public int compareTo(Object t){
+        Libro l = (Libro)t; 
+        if(this.titulo.compareToIgnoreCase(l.titulo) > 0){
+            return 1;
+        }else if(this.titulo.compareToIgnoreCase(l.titulo) < 0){
+            return -1;
+        }else{
+            return 0;
+        }
+    } 
 }
